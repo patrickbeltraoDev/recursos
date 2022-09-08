@@ -10,7 +10,9 @@
         $pdo = new PDO ("{$sgbd}:dbname={$dbname};host={$host}", "$usuario", "$password");
     }
     catch(PDOException $e) {
-        
+       echo "Erro com o acesso ao banco de dados: " . $e->getMessage();
+    }catch(Exception $e){
+        echo "Erro Genérico: " . $e->getMessage();
     }
 
     // if($pdo){
