@@ -15,13 +15,32 @@
         echo "Erro Genérico: " . $e->getMessage();
     }
 
-    // if($pdo){
-    //     echo 'Conexão bem Sucedida!';
-    // }else{
-    //     echo 'Não foi possível conectar com o banco de dados!';
-    // }
+    
+    //------------------------------- INSERT --------------------------------------
+
+    $res = $pdo->prepare("INSERT INTO tabela (nomeDaColuna) VALUES (:n, :t, :e)");
+
+    $res->bindValue(":n", "valor1"); //esse método aceita valores, ou variáveis e funções e repassar para o valores do INSERT
+    $res->bindValue(":n", "valor1"); //esse método aceita valores, ou variáveis e funções e repassar para o valores do INSERT
+    $res->bindValue(":n", "valor1"); //esse método aceita valores, ou variáveis e funções e repassar para o valores do INSERT
+    $res->execute();
 
 
+    //--- OU O MÉTODO QUERY
 
+    $pdo->query("INSERT INTO tabela (nomeDaColuna) VALUES ('VALOR1', 'VALOR2')")
+    
+
+    //------------------------------- SELECT --------------------------------------
+
+    $res = $pdo->prepare("SELECT * FROM tabela WHERE id = :id");
+    $res = bindValue(":id", 4);
+    $res = execute();
+    $res->fetchAll(PDO::FETCH_ASSOC);
+    $arrayResultado = $res;
+
+    foreach($arrayResultado as $key => $value){
+        echo $key . ":" . $value;
+    }
 
 ?>
